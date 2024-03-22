@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "name": "Drill Machine",
+        "price": 150,
+        "image": "img/drillmachine.png"
+    },
+    {
+        "id": 2,
+        "name": "Circular Shaw",
+        "price": 220,
+        "image": "img/circularshaw.png"
+    },
+    {
+        "id": 3,
+        "name": "Gloves",
+        "price": 50,
+        "image": "img/gloves.png"
+    }
+    ,
+    {
+        "id": 4,
+        "name": "Helmet",
+        "price": 150,
+        "image": "img/helmet.png"
+    },
+    {
+        "id": 5,
+        "name": "Water Gun",
+        "price": 200,
+        "image": "img/watergun.png"
+    },
+    {
+        "id": 6,
+        "name": "Lader",
+        "price": 120,
+        "image": "img/ladder.png"
+    }
+]
