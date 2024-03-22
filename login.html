@@ -9,7 +9,8 @@
     <title>Modern Login Page | AsmrProg</title>
 </head>
 
-<body><div class="container" id="container"> 
+<body>
+    <div class="container" id="container">
         <div class="form-container sign-up">
             <form action="" method="post">
                 <h1>Create Account</h1>
@@ -20,9 +21,9 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registeration</span>
-                <input type="text" placeholder="Name" required/>
-                <input type="email" placeholder="Email"required/>
-                <input type="password" placeholder="Password"required/>
+                <input type="text" placeholder="Name" required />
+                <input type="email" placeholder="Email" required />
+                <input type=" password" placeholder="Password" required />
                 <button>Sign Up</button>
             </form>
             <?php  }?>
@@ -37,10 +38,11 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <input type="email" placeholder="Email" id="email">
+                <input type="password" placeholder="Password" id="password">
+                <a href="https://mordern-tools-default-rtdb.asia-southeast1.firebasedatabase.app/">Forget Your
+                    Password?</a>
+                <button id="logg">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
@@ -58,8 +60,74 @@
             </div>
         </div>
     </div>
+    <script type="module">
 
-    <script src="login.js"></script>
+        // const container = document.getElementById('container');
+        // const registerBtn = document.getElementById('register');
+        // const loginBtn = document.getElementById('login');
+
+        // registerBtn.addEventListener('click', () => {
+        //     container.classList.add("active");
+        // });
+
+        // loginBtn.addEventListener('click', () => {
+        //     container.classList.remove("active");
+        // });
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getDatabase, get, ref, set, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCCg3GmareRAmEvjoHI7Brbd6_tE7HIziA",
+            authDomain: "mordern-tools.firebaseapp.com",
+            databaseURL: "https://mordern-tools-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "mordern-tools",
+            storageBucket: "mordern-tools.appspot.com",
+            messagingSenderId: "820472292829",
+            appId: "1:820472292829:web:fa73fcb9620f9e7fab0234"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+
+
+        // document.getElementById("logg").addEventListener('click', function (e) {
+        //     e.preventDefault();
+        //     // container.classList.add("active");
+        //     const email = document.getElementById("email").value;
+        //     const username = email.split("@")[0];
+        //     set(ref(db, 'user/' + document.getElementById("username").value),
+        //         {
+        //             // username: document.getElementById("username").value,
+        //             email: document.getElementById("email").value,
+        //             password: document.getElementById("password").value,
+
+        //         });
+        //     alert("Login Sucessfully !!!...");
+        // });
+
+        document.getElementById("logg").addEventListener('click', function (e) {
+            e.preventDefault();
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+            if (emailInput && passwordInput) {
+                const email = emailInput.value;
+                const username = email.split("@")[0].toUpperCase();
+                set(ref(db, 'user/' + username), {
+                    email: email,
+                    password: passwordInput.value,
+                });
+                alert("Login Successfully !!!...");
+            } else {
+                console.error("Email or password input element not found.");
+            }
+        });
+    </script>
 </body>
 
 </html>

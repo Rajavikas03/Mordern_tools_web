@@ -1,7 +1,8 @@
-{/* <script type="module"> */ }
+// {/* <script type="module"> */ }
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+import { getdatabase, get, ref, set, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,6 +18,32 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getdatabase(app);
+
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
+
+registerBtn.addEventListener('click', () => {
+    container.classList.add("active");
+});
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
+});
+
+document.getElementById("log").addEventListener('click', function (e) {
+    // container.classList.add("active");
+    set(ref(db, 'user/' + document.getElementById("username").value),
+        {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+
+        });
+    alert("Login Sucessfully !!!...");
+});
+
 
 
 // </script>
