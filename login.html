@@ -21,10 +21,10 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registeration</span>
-                <input type="text" placeholder="Name" required />
-                <input type="email" placeholder="Email" required />
-                <input type=" password" placeholder="Password" required />
-                <button>Sign Up</button>
+                <input type="text" placeholder="Name" required id="username" />
+                <input type="email" placeholder="Email" required id="emaill" />
+                <input type=" password" placeholder="Password" required id="passwordd" />
+                <button id="sign-up">Sign Up</button>
             </form>
             <?php  }?>
         </div>
@@ -42,7 +42,7 @@
                 <input type="password" placeholder="Password" id="password">
                 <a href="https://mordern-tools-default-rtdb.asia-southeast1.firebasedatabase.app/">Forget Your
                     Password?</a>
-                <button id="logg">Sign In</button>
+                <button id="sign-in">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
@@ -62,23 +62,10 @@
     </div>
     <script src="login.js"></script>
     <script type="module">
-
-        // const container = document.getElementById('container');
-        // const registerBtn = document.getElementById('register');
-        // const loginBtn = document.getElementById('login');
-
-        // registerBtn.addEventListener('click', () => {
-        //     container.classList.add("active");
-        // });
-
-        // loginBtn.addEventListener('click', () => {
-        //     container.classList.remove("active");
-        // });
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getDatabase, get, ref, set, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
         // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -95,24 +82,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-
-
-        // document.getElementById("logg").addEventListener('click', function (e) {
-        //     e.preventDefault();
-        //     // container.classList.add("active");
-        //     const email = document.getElementById("email").value;
-        //     const username = email.split("@")[0];
-        //     set(ref(db, 'user/' + document.getElementById("username").value),
-        //         {
-        //             // username: document.getElementById("username").value,
-        //             email: document.getElementById("email").value,
-        //             password: document.getElementById("password").value,
-
-        //         });
-        //     alert("Login Sucessfully !!!...");
-        // });
-
-        document.getElementById("logg").addEventListener('click', function (e) {
+        document.getElementById("sign-in").addEventListener('click', function (e) {
             e.preventDefault();
             const emailInput = document.getElementById("email");
             const passwordInput = document.getElementById("password");
@@ -125,7 +95,22 @@
                 });
                 alert("Login Successfully !!!...");
             } else {
-                console.error("Email or password input element not found.");
+                alert("Email or password input element not found.");
+            }
+        });
+        document.getElementById("sign-up").addEventListener('click', function (e) {
+            e.preventDefault();
+            const user = document.getElementById("username");
+            const email = document.getElementById("emaill");
+            const password = document.getElementById("passwordd");
+            if (email && password) {
+                set(ref(db, 'user/' + user), {
+                    email: email.value,
+                    password: password.value,
+                });
+                alert("Sign-up Successfully !!!...");
+            } else {
+                alert("Email or password input element not found.");
             }
         });
     </script>
