@@ -60,7 +60,13 @@
             </div>
         </div>
     </div>
+
+
+
     <script src="login.js"></script>
+
+
+
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -93,27 +99,60 @@
                     email: email,
                     password: passwordInput.value,
                 });
-                alert("Login Successfully !!!...");
+                // alert("Login Successfully !!!...");
+                window.location.href = "index.html";
             } else {
                 alert("Email or password input element not found.");
             }
         });
+    </script>
+
+
+
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getDatabase, get, ref, set, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+
+        // Your web app's Firebase configuration
+        const firebaseConfigg = {
+            apiKey: "AIzaSyCCg3GmareRAmEvjoHI7Brbd6_tE7HIziA",
+            authDomain: "mordern-tools.firebaseapp.com",
+            databaseURL: "https://mordern-tools-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "mordern-tools",
+            storageBucket: "mordern-tools.appspot.com",
+            messagingSenderId: "820472292829",
+            appId: "1:820472292829:web:fa73fcb9620f9e7fab0234"
+        };
+
+        // Initialize Firebase
+        const appp = initializeApp(firebaseConfigg);
+        const dbb = getDatabase(appp);
         document.getElementById("sign-up").addEventListener('click', function (e) {
             e.preventDefault();
             const user = document.getElementById("username");
             const email = document.getElementById("emaill");
             const password = document.getElementById("passwordd");
             if (email && password) {
-                set(ref(db, 'user/' + user), {
+                set(ref(dbb, 'user/' + user.value), {
                     email: email.value,
                     password: password.value,
                 });
-                alert("Sign-up Successfully !!!...");
+                // alert("Sign-up Successfully !!!...");
+                window.location.href = "index.html";
             } else {
                 alert("Email or password input element not found.");
             }
         });
+
     </script>
+
+
+
 </body>
 
 </html>
