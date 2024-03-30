@@ -95,12 +95,17 @@
             if (emailInput && passwordInput) {
                 const email = emailInput.value;
                 const username = email.split("@")[0].toUpperCase();
-                set(ref(db, 'user/' + username), {
+                set(ref(db, 'MordernToolsUsers/' + username), {
                     email: email,
                     password: passwordInput.value,
+                }).then(() => {
+                    console.log("Data successfully set on Firebase");
+                    window.location.href = "index.html";
+
+
+                }).catch(error => {
+                    console.error("Error setting data:", error);
                 });
-                // alert("Login Successfully !!!...");
-                window.location.href = "index.html";
             } else {
                 alert("Email or password input element not found.");
             }
@@ -141,9 +146,15 @@
                 set(ref(dbb, 'user/' + user.value), {
                     email: email.value,
                     password: password.value,
+                }).then(()=>{
+                    console.log("Data successfully set on Firebase");
+                    window.location.href = "index.html";
+
+
+
+                }).catch(error => {
+                    console.error("Error setting data:", error);
                 });
-                // alert("Sign-up Successfully !!!...");
-                window.location.href = "index.html";
             } else {
                 alert("Email or password input element not found.");
             }
