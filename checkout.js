@@ -1,4 +1,5 @@
 let listCart = [];
+let newCart = [];
 
 function checkCart() {
     var cookieValue = document.cookie
@@ -26,7 +27,7 @@ function addCartToHTML() {
     if (listCart) {
         listCart.forEach(product => {
             if (product) {
-                let newCart = document.createElement('div');
+                newCart = document.createElement('div');
                 newCart.classList.add('item');
                 newCart.innerHTML =
                     `<img src="${product.image}">

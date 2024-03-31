@@ -62,9 +62,10 @@ function addDataToHTML(){
 
 //use cookie so the cart doesn't get lost on refresh page
 let listCart = [];
+var cookieValue;
 
 function checkCart(){
-    var cookieValue = document.cookie
+    cookieValue = document.cookie
     .split('; ')
     .find(row => row.startsWith('listCart='));
     if(cookieValue){
