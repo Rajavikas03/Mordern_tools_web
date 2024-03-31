@@ -61,7 +61,7 @@ function addDataToHTML(){
 }
 
 //use cookie so the cart doesn't get lost on refresh page
-let listCart = [];
+// let listCart = [];
 var cookieValue;
 
 function checkCart(){
