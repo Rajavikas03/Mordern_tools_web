@@ -121,26 +121,15 @@
             const Address = document.getElementById("address");
             const Country = document.getElementById("country").options[document.getElementById("country").selectedIndex];
             const City = document.getElementById("city").options[document.getElementById("city").selectedIndex];
-
-            // Define an empty array to store order details
             var orderDetailsArray = [];
 
-            // Iterate over the listCart array
             listCart.forEach(cartProduct => {
-                // Check if cartProduct is not null or undefined
                 if (cartProduct) {
-                    // Extract product information
                     var productName = cartProduct.name;
                     var productPrice = cartProduct.price;
                     var productQuantity = cartProduct.quantity;
-
-                    // Create a string containing order details
                     var orderDetails = `${productName}, ${productPrice}, ${productQuantity}`;
-
-                    // Log the product details for debugging
                     console.log(productName, productPrice, productQuantity);
-
-                    // Push order details to the orderDetailsArray
                     orderDetailsArray.push(orderDetails);
                 } else {
                     console.error("No product");
