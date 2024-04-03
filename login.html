@@ -108,27 +108,24 @@
         document.getElementById("sign-in").addEventListener('click', function (e) {
             e.preventDefault();
             const emailInput = document.getElementById("email");
-            const email = emailInput.value;
-            const username = email.split("@")[0].toUpperCase();
             const passwordInput = document.getElementById("password");
-            const dbref = ref(db);
-
-            get(child(dbref, 'MordernToolsUsers/' + username)).then((snapshot) => {
-
-                if (snapshot) {
-                    // const mail = snapshot.val().email; // Error occurs here
-                    // if (mail === email) {
-                    console.log("Successfully logged in");
+            if (emailInput.value !== "" && passwordInput.value !== "") {
+                const email = emailInput.value;
+                const username = email.split("@")[0].toUpperCase();
+                set(ref(db, 'MordernToolsUsers/' + username), {
+                    email: email,
+                    password: passwordInput.value,
+                }).then(() => {
+                    console.log("Data successfully set on Firebase");
                     window.location.href = "index.html";
-                    // } else {
-                    //     alert("Incorrect email or password!");
-                    // }
-                } else {
-                    alert("Incorrect email or password  !!!");
-                }
-            }).catch(error => {
-                console.error("Error in sign-in:", error);
-            });
+
+
+                }).catch(error => {
+                    console.error("Error setting data:", error);
+                });
+            } else {
+                console.error("Email or password input element not found.");
+            }
         });
     </script>
 
@@ -136,6 +133,24 @@
 
     <!-- SIGN UP -->
     <script type="module">
+        // // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        // import { getDatabase, get, ref, set, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        // // TODO: Add SDKs for Firebase products that you want to use
+
+
+
+        // // Your web app's Firebase configuration
+        // const firebaseConfigg = {
+        //     apiKey: "AIzaSyCCg3GmareRAmEvjoHI7Brbd6_tE7HIziA",
+        //     authDomain: "mordern-tools.firebaseapp.com",
+        //     databaseURL: "https://mordern-tools-default-rtdb.asia-southeast1.firebasedatabase.app",
+        //     projectId: "mordern-tools",
+        //     storageBucket: "mordern-tools.appspot.com",
+        //     messagingSenderId: "820472292829",
+        //     appId: "1:820472292829:web:fa73fcb9620f9e7fab0234"
+        // };
+
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getDatabase, get, ref, set, child } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
